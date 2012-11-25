@@ -12,27 +12,28 @@ public class CopyAfterGap implements Operation {
     private Machine m = new MachineImpl();
 
     public CopyAfterGap(Language language) {
-        m.addInstruction("s", '>', "s", '>');
-        m.addInstruction("s", ' ', "s", '>');
-        m.addInstruction("s", '*', "found start", '<');
-        m.addInstruction("found start", '*', "detect symbol", '>');
+        m.setVerbose(true);
+        m.addInstruction("s", '>', "s", Action.MOVERIGHT);
+        m.addInstruction("s", ' ', "s", Action.MOVERIGHT);
+        m.addInstruction("s", '*', "found start", Action.MOVELEFT);
+        m.addInstruction("found start", '*', "detect symbol", Action.MOVERIGHT);
 
 
-        m.addInstruction("rewritten original", '*', "detect symbol", '>');
+        m.addInstruction("rewritten original", '*', "detect symbol", Action.MOVERIGHT);
 
         m.addInstruction("detect symbol", ' ', "h", ' ');
 
         for (char symbol : language.get()) {
             m.addInstruction("detect symbol", symbol, "deleting " + symbol, ' ');
-            m.addInstruction("deleting " + symbol, ' ', "found " + symbol, '>');
-            m.addInstruction("found " + symbol, '*', "found " + symbol, '>');
-            m.addInstruction("found " + symbol, ' ', "skipping copy to write " + symbol, '>');
-            m.addInstruction("skipping copy to write " + symbol, '*', "skipping copy to write " + symbol, '>');
+            m.addInstruction("deleting " + symbol, ' ', "found " + symbol, Action.MOVERIGHT);
+            m.addInstruction("found " + symbol, '*', "found " + symbol, Action.MOVERIGHT);
+            m.addInstruction("found " + symbol, ' ', "skipping copy to write " + symbol, Action.MOVERIGHT);
+            m.addInstruction("skipping copy to write " + symbol, '*', "skipping copy to write " + symbol, Action.MOVERIGHT);
             m.addInstruction("skipping copy to write " + symbol, ' ', "written " + symbol, symbol);
 
-            m.addInstruction("written " + symbol, '*', "written " + symbol, '<');
-            m.addInstruction("written " + symbol, ' ', "skipping original to rewrite " + symbol, '<');
-            m.addInstruction("skipping original to rewrite " + symbol, '*', "skipping original to rewrite " + symbol, '<');
+            m.addInstruction("written " + symbol, '*', "written " + symbol, Action.MOVELEFT);
+            m.addInstruction("written " + symbol, ' ', "skipping original to rewrite " + symbol, Action.MOVELEFT);
+            m.addInstruction("skipping original to rewrite " + symbol, '*', "skipping original to rewrite " + symbol, Action.MOVELEFT);
             m.addInstruction("skipping original to rewrite " + symbol, ' ', "rewritten original", symbol);
 
         }

@@ -17,8 +17,8 @@ public class ShiftLeftTest extends OperationTest {
         setLanguage(new char[]{'0','1','2'});
         assertEquals(">021", run("> 021"));
 
-        setLanguage(new char[]{'a', '1', '2'});
-        assertEquals(">021", run("> 021"));
+        setLanguage(new char[]{'0', '1', '2'});
+        assertEquals(">21", run(">021"));
     }
 
     @Override

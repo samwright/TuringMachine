@@ -7,6 +7,8 @@ package turing;
  * Time: 21:35
  */
 public interface Tape {
+    static final char EMPTY = ' ';
+    static final char START = '>';
 
     /**
      * Overwrite the tape under the head to 'symbol'.

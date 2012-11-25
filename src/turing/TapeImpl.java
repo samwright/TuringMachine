@@ -12,8 +12,6 @@ import java.util.ListIterator;
  * Time: 23:54
  */
 public class TapeImpl implements Tape {
-    public static final char EMPTY = ' ';
-    public static final char START = '>';
     private TapeElement start_element, head;
     private int position;
 

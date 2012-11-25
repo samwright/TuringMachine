@@ -6,7 +6,10 @@ package turing;
  * Date: 24/11/2012
  * Time: 15:44
  */
-interface Action {
+public interface Action {
+    final char MOVELEFT = '«';
+    final char MOVERIGHT = '»';
+
     /**
      * Returns the state the action moves the machine to.
      * @return The state the action moves the machine to.

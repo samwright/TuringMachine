@@ -28,13 +28,13 @@ public class ActionImplTest {
     @Test
     public void testIsMoveRight() throws Exception {
         assertFalse(action.isMoveRight());
-        assertTrue((new ActionImpl("move right", '>').isMoveRight()));
+        assertTrue((new ActionImpl("move right", Action.MOVERIGHT).isMoveRight()));
     }
 
     @Test
     public void testIsMoveLeft() throws Exception {
         assertFalse(action.isMoveLeft());
-        assertTrue((new ActionImpl("move left", '<').isMoveLeft()));
+        assertTrue((new ActionImpl("move left", Action.MOVELEFT).isMoveLeft()));
     }
 
     @Test

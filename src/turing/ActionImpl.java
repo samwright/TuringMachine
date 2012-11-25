@@ -6,9 +6,7 @@ package turing;
  * Date: 24/11/2012
  * Time: 13:31
  */
-class ActionImpl implements Action {
-    public final char MOVELEFT = '<';
-    public final char MOVERIGHT = '>';
+public class ActionImpl implements Action {
     private final String new_state;
     private final char task;
 

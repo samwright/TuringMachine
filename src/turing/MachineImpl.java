@@ -10,11 +10,6 @@ import java.util.Map;
  * Time: 13:22
  */
 public class MachineImpl implements Machine {
-    public static final String HALT = "h";
-    public static final String START = "s";
-    public static final String WILDCARD_STATE = "*";
-    public static final char WILDCARD_SYMBOL = '*';
-
     private Map<String,Map<Character,Action>> instructions = new HashMap<String, Map<Character, Action>>();
     private Tape tape;
     private String initial_tape_str;

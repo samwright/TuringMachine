@@ -1,7 +1,8 @@
 package turing.examples;
 
-import turing.Machine;
-import turing.MachineImpl;
+
+import turing.*;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,18 +14,18 @@ public class ShiftLeftABC {
     private static Machine m = new MachineImpl();
 
     static {
-        m.addInstruction("s", '>', "s", '>');
-        m.addInstruction("s", '*', "moved right", '>');
-        m.addInstruction("moved right", ' ', "found empty", '<');
+        m.addInstruction("s", '>', "s", Action.MOVERIGHT);
+        m.addInstruction("s", '*', "moved right", Action.MOVERIGHT);
+        m.addInstruction("moved right", ' ', "found empty", Action.MOVELEFT);
         m.addInstruction("found empty", '*', "h", ' ');
 
-        m.addInstruction("wrote something", '*', "s", '>');
+        m.addInstruction("wrote something", '*', "s", Action.MOVERIGHT);
 
-        m.addInstruction("moved right", 'a', "found a", '<');
+        m.addInstruction("moved right", 'a', "found a", Action.MOVELEFT);
         m.addInstruction("found a", '*', "wrote something", 'a');
-        m.addInstruction("moved right", 'b', "found b", '<');
+        m.addInstruction("moved right", 'b', "found b", Action.MOVELEFT);
         m.addInstruction("found b", '*', "wrote something", 'b');
-        m.addInstruction("moved right", 'c', "found c", '<');
+        m.addInstruction("moved right", 'c', "found c", Action.MOVELEFT);
         m.addInstruction("found c", '*', "wrote something", 'c');
 
     }

@@ -19,11 +19,11 @@ public class MachineImplTest {
         m = new MachineImpl();
         m.setTape(">");
 
-        m.addInstruction("s", '>', "write a", '>');
+        m.addInstruction("s", '>', "write a", Action.MOVERIGHT);
         m.addInstruction("write a", ' ', "written a", 'a');
-        m.addInstruction("written a", 'a', "write b", '>');
+        m.addInstruction("written a", 'a', "write b", Action.MOVERIGHT);
         m.addInstruction("write b", ' ', "written b", 'b');
-        m.addInstruction("written b", 'b', "write c", '>');
+        m.addInstruction("written b", 'b', "write c", Action.MOVERIGHT);
         m.addInstruction("write c", ' ', "h", 'c');
     }
 
@@ -35,14 +35,14 @@ public class MachineImplTest {
     @Test
     public void testGetAction() throws Exception {
         assertNotNull(m.getAction("s", '>'));
-        assertTrue(m.getAction("s", '>').equals(new ActionImpl("write a", '>')));
+        assertTrue(m.getAction("s", '>').equals(new ActionImpl("write a", Action.MOVERIGHT)));
         assertNull(m.getAction("s", 'a'));
     }
 
     @Test
     public void testGetActionWildcardSymbol() throws Exception {
-        m.addInstruction("foo", '*', "h", '>');
-        assertTrue(new ActionImpl("h", '>').equals(m.getAction("foo", 'y')));
+        m.addInstruction("foo", '*', "h", Action.MOVERIGHT);
+        assertTrue(new ActionImpl("h", Action.MOVERIGHT).equals(m.getAction("foo", 'y')));
 
         m.addInstruction("foo", 'z', "h", 'z');
         checkActionWildcardSymbol();
@@ -55,8 +55,8 @@ public class MachineImplTest {
 
     @Test
     public void testGetActionWildcardState() throws Exception {
-        m.addInstruction("*", 'z', "h", '>');
-        assertTrue(new ActionImpl("h", '>').equals(m.getAction("bar", 'z')));
+        m.addInstruction("*", 'z', "h", Action.MOVERIGHT);
+        assertTrue(new ActionImpl("h", Action.MOVERIGHT).equals(m.getAction("bar", 'z')));
 
         m.addInstruction("bar", 'z', "h", 'z');
         checkActionWildcardState();
@@ -69,15 +69,15 @@ public class MachineImplTest {
 
     @Test
     public void testGetActionDefault() throws Exception {
-        m.addInstruction("*", '*', "default", '>');
+        m.addInstruction("*", '*', "default", Action.MOVERIGHT);
         checkActionDefault();
     }
 
     private void checkActionDefault() throws Exception {
-        assertTrue(new ActionImpl("default", '>').equals(m.getAction("foo", 'z')));
-        assertTrue(new ActionImpl("default", '>').equals(m.getAction("foo", 'y')));
-        assertTrue(new ActionImpl("default", '>').equals(m.getAction("bar", 'z')));
-        assertTrue(new ActionImpl("default", '>').equals(m.getAction("bar", 'y')));
+        assertTrue(new ActionImpl("default", Action.MOVERIGHT).equals(m.getAction("foo", 'z')));
+        assertTrue(new ActionImpl("default", Action.MOVERIGHT).equals(m.getAction("foo", 'y')));
+        assertTrue(new ActionImpl("default", Action.MOVERIGHT).equals(m.getAction("bar", 'z')));
+        assertTrue(new ActionImpl("default", Action.MOVERIGHT).equals(m.getAction("bar", 'y')));
         testRunToCompletion();
     }
 

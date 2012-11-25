@@ -7,7 +7,10 @@ package turing;
  * Time: 23:40
  */
 public interface Machine {
-    final int f = 4;
+    static final String HALT = "h";
+    static final String START = "s";
+    static final String WILDCARD_STATE = "*";
+    static final char WILDCARD_SYMBOL = '*';
 
     /**
      * Adds an instruction to the machine.
