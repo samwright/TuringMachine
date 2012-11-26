@@ -81,6 +81,12 @@ public interface Machine {
     void setTape(Tape tape);
 
     /**
+     * Compiles the machine to a string which can be run in the Universal Turing Macine (turing.examples)
+     * @return Compiled machine code.
+     */
+    String compile();
+
+    /**
      * Returns the current configuration of the machine as a string.
      * @return The current machine status
      */

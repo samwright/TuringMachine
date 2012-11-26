@@ -22,8 +22,8 @@ public class MachineImpl implements Machine {
             valid_symbols = new HashMap<Character,Action>();
             instructions.put(state, valid_symbols);
         } else if (valid_symbols.containsKey(symbol)) {
-            throw new RuntimeException("Instruction already exists for state " + state
-                + " and symbol " + symbol);
+            throw new RuntimeException("Instruction already exists for state \'" + state
+                + "\' and symbol \'" + symbol + "\'");
         }
         valid_symbols.put(symbol, new ActionImpl(next_state, task));
     }
@@ -88,12 +88,41 @@ public class MachineImpl implements Machine {
         initial_tape_str = tape.toString();
     }
 
+    public String compile() {
+        Map<String, Map<Character,Action>> instructions_copy = new HashMap<String, Map<Character, Action>>();
+        //Map<Character,Action> valid_instructions.get("h")
+        Map<String, String> state_mapping = new HashMap<String, String>();
+
+        state_mapping.put("h", intToSparseBinary(2));
+        state_mapping.put("s", intToSparseBinary(1));
+
+        //Map<Character, Character>
+
+        int i=3;
+        for (Map.Entry<String, Map<Character,Action>> e : instructions.entrySet()) {
+            if (!state_mapping.containsKey(e.getKey()))
+                state_mapping.put(e.getKey(), intToSparseBinary(i++));
+        }
+        return null;
+    }
+
+    private String intToSparseBinary(int num) {
+        String binary = Integer.toBinaryString(num);
+        StringBuilder sbuf = new StringBuilder();
+        sbuf.append('a');
+        for (int i=0; i<binary.length(); ++i) {
+            sbuf.append(' ');
+            sbuf.append(binary.charAt(i));
+        }
+        return sbuf.toString();
+    }
+
     private void runOnce() {
         Action action = getAction(state, tape.read());
 
         if (action == null)
-            throw new RuntimeException("No instruction exists for state " + state
-                    + " and symbol " + tape.read());
+            throw new RuntimeException("No instruction exists for state \'" + state
+                    + "\' and symbol \'" + tape.read()+"\'");
 
         if (action.isMoveLeft())
             tape.moveLeft();

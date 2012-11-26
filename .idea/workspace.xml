@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a627187-60a1-43ae-9fde-afa1bc128da9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/turing/examples/Universal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/Action.java" afterPath="$PROJECT_DIR$/src/turing/Action.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/ActionImpl.java" afterPath="$PROJECT_DIR$/src/turing/ActionImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/turing/examples/UniversalTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/Machine.java" afterPath="$PROJECT_DIR$/src/turing/Machine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/MachineImpl.java" afterPath="$PROJECT_DIR$/src/turing/MachineImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/Tape.java" afterPath="$PROJECT_DIR$/src/turing/Tape.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/TapeImpl.java" afterPath="$PROJECT_DIR$/src/turing/TapeImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/CopyAfterGap.java" afterPath="$PROJECT_DIR$/src/turing/examples/CopyAfterGap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/ShiftLeft.java" afterPath="$PROJECT_DIR$/src/turing/examples/ShiftLeft.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/ShiftLeftABC.java" afterPath="$PROJECT_DIR$/src/turing/examples/ShiftLeftABC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/turing/ActionImplTest.java" afterPath="$PROJECT_DIR$/test/turing/ActionImplTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/turing/MachineImplTest.java" afterPath="$PROJECT_DIR$/test/turing/MachineImplTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/turing/examples/ShiftLeftTest.java" afterPath="$PROJECT_DIR$/test/turing/examples/ShiftLeftTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/Universal.java" afterPath="$PROJECT_DIR$/src/turing/examples/Universal.java" />
     </list>
     <ignored path="TuringMachine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,7 +67,86 @@
       <file leaf-file-name="Universal.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/turing/examples/Universal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="176" column="0" selection-start="10143" selection-end="10143" vertical-scroll-proportion="0.56802243">
+            <state line="243" column="13" selection-start="14853" selection-end="14853" vertical-scroll-proportion="0.713615">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2436#2447#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UniversalTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/turing/examples/UniversalTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="39" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Machine.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/turing/Machine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="84" column="37" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OperationTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/turing/examples/OperationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="18" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TapeImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/turing/TapeImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="64" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tape.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/turing/Tape.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="22" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MachineImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/turing/MachineImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="0" selection-start="2735" selection-end="2735" vertical-scroll-proportion="-7.923077">
+              <folding>
+                <element signature="e#278#310#0" expanded="true" />
+                <element signature="e#2455#2487#0" expanded="true" />
+                <element signature="e#2606#2622#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CopyAfterGapTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/turing/examples/CopyAfterGapTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="46" selection-start="443" selection-end="527" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShiftLeft.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/turing/examples/ShiftLeft.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="8" selection-start="872" selection-end="929" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -95,8 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test/turing/examples/CopyWithoutGapTest.java" />
-        <option value="$PROJECT_DIR$/test/turing/ActionImplTest.java" />
         <option value="$PROJECT_DIR$/test/turing/MachineImplTest.java" />
         <option value="$PROJECT_DIR$/src/turing/Action.java" />
         <option value="$PROJECT_DIR$/src/turing/ActionImpl.java" />
@@ -105,11 +173,13 @@
         <option value="$PROJECT_DIR$/src/turing/TapeElement.java" />
         <option value="$PROJECT_DIR$/src/turing/TapeImpl.java" />
         <option value="$PROJECT_DIR$/src/turing/Tape.java" />
-        <option value="$PROJECT_DIR$/src/turing/Machine.java" />
-        <option value="$PROJECT_DIR$/src/turing/MachineImpl.java" />
         <option value="$PROJECT_DIR$/test/turing/examples/ShiftLeftTest.java" />
         <option value="$PROJECT_DIR$/test/turing/examples/CopyAfterGapTest.java" />
         <option value="$PROJECT_DIR$/src/turing/examples/CopyAfterGap.java" />
+        <option value="$PROJECT_DIR$/test/turing/examples/UniversalTest.java" />
+        <option value="$PROJECT_DIR$/src/turing/Compiler.java" />
+        <option value="$PROJECT_DIR$/src/turing/Machine.java" />
+        <option value="$PROJECT_DIR$/src/turing/MachineImpl.java" />
         <option value="$PROJECT_DIR$/src/turing/examples/Universal.java" />
       </list>
     </option>
@@ -126,7 +196,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -145,12 +215,16 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
+      <pane id="PackagesPane">
+        <subPane>
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TuringMachine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TuringMachine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -255,7 +329,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,6 +356,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
@@ -294,29 +378,7 @@
       <recent name="turing.examples" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in TuringMachine">
-    <configuration default="false" name="CopyAfterGapTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="TuringMachine" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="turing.examples" />
-      <option name="MAIN_CLASS_NAME" value="turing.examples.CopyAfterGapTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.UniversalTest">
     <configuration default="false" name="ShiftLeftABCTest and 1 more" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="TuringMachine" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -400,6 +462,28 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="UniversalTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="TuringMachine" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="turing.examples" />
+      <option name="MAIN_CLASS_NAME" value="turing.examples.UniversalTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -532,11 +616,11 @@
       </method>
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.CopyAfterGapTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ShiftLeftABCTest and 1 more" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ActionImplTest and 4 more" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CopyWithoutGapTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.All in TuringMachine" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.ShiftLeftABCTest and 1 more" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ActionImplTest and 4 more" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CopyWithoutGapTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.All in TuringMachine" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.UniversalTest" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -546,6 +630,7 @@
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+      <changelist id="6a627187-60a1-43ae-9fde-afa1bc128da9" name="Default" comment="" />
       <created>1353706458509</created>
       <updated>1353706458509</updated>
     </task>
@@ -553,10 +638,14 @@
       <created>1353826352906</created>
       <updated>1353826352906</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Nearly done with state transitions in the universal Turing machine.">
+      <created>1353857216385</created>
+      <updated>1353857216385</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
-  <component name="TodoView" selected-index="0">
+  <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
       <are-packages-shown value="false" />
       <are-modules-shown value="false" />
@@ -591,13 +680,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1527977" sideWeight="0.22045153" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31563845" sideWeight="0.68260294" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3173971" sideWeight="0.9928264" order="6" side_tool="false" content_ui="tabs" x="9" y="595" width="1425" height="301" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18364419" sideWeight="0.68260294" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3173971" sideWeight="0.9928264" order="6" side_tool="false" content_ui="tabs" x="9" y="595" width="1425" height="301" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -637,7 +726,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done copy_with_gap, shift_left, and copy_without_gap." />
+    <option name="LAST_COMMIT_MESSAGE" value="Universal turing machine done and tested with a simple &quot;&gt;&quot; to &quot;&gt;123&quot; machine (compiled by hand).  Starting to write compiler..." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -651,6 +740,8 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Done copy_with_gap, shift_left, and copy_without_gap." />
+    <MESSAGE value="Nearly done with state transitions in the universal Turing machine." />
+    <MESSAGE value="Universal turing machine done and tested with a simple &quot;&gt;&quot; to &quot;&gt;123&quot; machine (compiled by hand).  Starting to write compiler..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -660,133 +751,99 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/turing/examples/CopyWithoutGapTest.java">
+    <entry file="file://$PROJECT_DIR$/test/turing/examples/ShiftLeftTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="16" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="20" column="34" selection-start="475" selection-end="475" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/turing/examples/OperationTest.java">
+    <entry file="file://$PROJECT_DIR$/test/turing/examples/ShiftLeftABCTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="545" selection-end="545" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="11" column="13" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/turing/TapeElement.java">
+    <entry file="file://$PROJECT_DIR$/src/turing/examples/CopyAfterGap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="62" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/turing/TapeElementImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/turing/Language.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="6" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
+        <state line="11" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/turing/LanguageImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="226" selection-end="226" vertical-scroll-proportion="0.08264463" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TuringMachine.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/turing/examples/CopyAfterGapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="46" selection-start="443" selection-end="527" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/turing/examples/ShiftLeft.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="8" selection-start="872" selection-end="929" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/turing/Tape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="22" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/turing/TapeImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="18" column="64" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/turing/Tape.java">
+    <entry file="file://$PROJECT_DIR$/test/turing/examples/OperationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="4" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0">
+        <state line="23" column="18" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/turing/examples/UniversalTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="39" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/turing/Machine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="4" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0">
+        <state line="84" column="37" selection-start="2205" selection-end="2205" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/turing/MachineImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="4" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0">
+        <state line="97" column="0" selection-start="2735" selection-end="2735" vertical-scroll-proportion="-7.923077">
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/turing/examples/ShiftLeft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="30" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/turing/examples/ShiftLeftTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="34" selection-start="475" selection-end="475" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/turing/examples/ShiftLeftABCTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/turing/examples/CopyAfterGapTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="25" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/turing/examples/CopyAfterGap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="62" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/turing/Language.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/turing/LanguageImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="226" selection-end="226" vertical-scroll-proportion="0.08264463">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#313#324#0" expanded="true" />
-            <element signature="e#390#401#0" expanded="true" />
+            <element signature="e#278#310#0" expanded="true" />
+            <element signature="e#2455#2487#0" expanded="true" />
+            <element signature="e#2606#2622#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/turing/examples/Universal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="0" selection-start="10143" selection-end="10143" vertical-scroll-proportion="0.56802243">
-          <folding />
+        <state line="243" column="13" selection-start="14853" selection-end="14853" vertical-scroll-proportion="0.713615">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2436#2447#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
