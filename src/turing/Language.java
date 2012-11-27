@@ -11,4 +11,5 @@ import java.util.Set;
  */
 public interface Language {
     Set<Character> get();
+    void checkUniversal();
 }

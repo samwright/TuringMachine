@@ -56,14 +56,28 @@ import java.util.Set;
  *   (Where halt is a0, start is a1.)
  *
  */
-public class Universal implements Operation {
+public class UniversalExecutor implements Operation {
     private Machine m = new MachineImpl();
-    private static final char START = '>';
-    private static final char INNERSTART = '=';
 
-    public Universal(Language language){
+    public static final char START = '=';
+    public static final char INNERSTART = '>';
+    public static final char HALT = Machine.HALT.charAt(0);
+    public static final char WRITE = 'w';
+
+    // TODO: these chars aren't ever used in UniversalExecutor!  Changing them doesn't change the compilation language.
+    public static final char STATE_START = 'a';
+    public static final char SYMBOL_START = 'b';
+    public static final char STATE_END = ';';
+    public static final char ITER_I = 'i';
+    public static final char ITER_J = 'j';
+    public static final char BUFFER_POINTER = 'p';
+
+
+
+
+    public UniversalExecutor(Language language){
         Language binary_language = new LanguageImpl(new char[]{'0', '1'});
-        Language task_language = new LanguageImpl(new char[]{'w', 'l', 'r', 'h'});
+        Language task_language = new LanguageImpl(new char[]{WRITE, Action.MOVELEFT, Action.MOVERIGHT, HALT});
         Set<Character> extended_language_set= new HashSet<Character>(language.get());
         extended_language_set.add(INNERSTART);
         extended_language_set.add(Tape.EMPTY);
@@ -229,22 +243,22 @@ public class Universal implements Operation {
         for (char task : task_language.get()) {
 
             m.addInstruction("skip number to get to job", task, "job is: " + task, Action.MOVERIGHT);
-            if (task != 'w') {
+            if (task != WRITE) {
                 m.addInstruction("job is: " + task, '*', "job is: " + task, Action.MOVERIGHT);
                 m.addInstruction("job is: " + task, ';', "maybe at end of functions, job is: " + task, Action.MOVERIGHT);
                 m.addInstruction("maybe at end of functions, job is: " + task, '*', "job is: " + task, Action.MOVERIGHT);
                 m.addInstruction("maybe at end of functions, job is: " + task, ';', "reading buffer, job is: " + task, Action.MOVERIGHT);
 
-                if (task == 'l')
+                if (task == Action.MOVELEFT)
                     m.addInstruction("buffer popped, job is:" + task, '*', "read new buffer", Action.MOVELEFT);
-                else if (task == 'r')
+                else if (task == Action.MOVERIGHT)
                     m.addInstruction("buffer popped, job is:" + task, '*', "read new buffer", Action.MOVERIGHT);
-                else if (task == 'h')
+                else if (task == HALT)
                     m.addInstruction("buffer popped, job is:" + task, '*', "h", Action.MOVERIGHT);
             }
 
             for (char symbol : extended_language_set) {
-                if (task == 'w') {
+                if (task == WRITE) {
                     m.addInstruction("job is: " + task, symbol, "job is: " + task + " " + symbol, Action.MOVERIGHT);
                     m.addInstruction("job is: " + task + " " + symbol, '*', "job is: " + task + " " + symbol, Action.MOVERIGHT);
                     m.addInstruction("job is: " + task + " " + symbol, ';', "maybe at end of functions, job is: " + task + " " + symbol, Action.MOVERIGHT);
@@ -259,7 +273,7 @@ public class Universal implements Operation {
                     m.addInstruction("buffer is " + symbol + ", job is:" + task, 'p', "buffer popped, job is:" + task, symbol);
 
                     // Both l and r share these states, and we don't want duplicates.
-                    if (task == 'l') {
+                    if (task == Action.MOVELEFT) {
                         // Taking new value from input tape and storing in buffer
                         m.addInstruction("read new buffer", symbol, "new buffer is " + symbol, 'p');
                         m.addInstruction("new buffer is " + symbol, '*', "new buffer is " + symbol, Action.MOVELEFT);

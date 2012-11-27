@@ -13,7 +13,14 @@ public interface Machine {
     static final char WILDCARD_SYMBOL = '*';
 
     /**
-     * Adds an instruction to the machine.
+     * Adds an instruction to the machine.  The symbol and/or state can be *,
+     * the wildcard, meaning the instruction is executed for any state and/or
+     * symbol that has no competing instruction that has a higher priority:
+     *
+     * highest priority - static state, static symbol
+     * then             - static state, wild symbol
+     * then             - wild state, static symbol
+     * lowest priority  - wild state, wild symbol
      *
      * @param state The state the instruction starts in.
      * @param symbol The symbol at the head in order to run this instruction.
@@ -81,10 +88,17 @@ public interface Machine {
     void setTape(Tape tape);
 
     /**
-     * Compiles the machine to a string which can be run in the Universal Turing Macine (turing.examples)
-     * @return Compiled machine code.
+     * Returns the machine's instructions for the given language, in a way that
+     * can then be compiled and run on a UniversalExecutor Turing Machine.  Apart from
+     * just formatting the string, this converts instructions containing a wildcard
+     * to instructions acting on static symbols defined in language (as per the
+     * order of priority described for addInstruction).
+     *
+     * The resulting string can be run in the UniversalExecutor Turing Machine (turing.examples)
+     * @param language
+     * @return All instructions
      */
-    String compile();
+    String getInstructions(Language language);
 
     /**
      * Returns the current configuration of the machine as a string.

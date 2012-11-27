@@ -203,4 +203,12 @@ public class MachineImplTest {
                 "              ^", m.toString());
     }
 
+    @Test
+    public void testGetInstructions() {
+        String expected = "(1,a,1,»)(1,>,1,»)(1,b,1,»)(1, ,10,c)(1, ,1,a)(1, ,1,b)";
+        String received = m.getInstructions(new LanguageImpl(new char[]{'a', 'b', 'c', ' ', '>'}));
+
+        assertEquals(expected, received);
+    }
+
 }

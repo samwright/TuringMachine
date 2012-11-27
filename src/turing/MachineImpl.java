@@ -1,7 +1,9 @@
 package turing;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -88,6 +90,55 @@ public class MachineImpl implements Machine {
         initial_tape_str = tape.toString();
     }
 
+    public String getInstructions(Language language) {
+        if (null != instructions.get(WILDCARD_STATE))
+            throw new UnsupportedOperationException("Wildcard state compilation not supported yet");
+
+        language.checkUniversal();
+
+        char symbol;
+        Action action;
+        StringBuilder sbuf = new StringBuilder();
+        Action wildcard_action;
+        Map<String,String> binary_states = new HashMap<String,String>();
+        int state_number = 3;
+
+        binary_states.put(Machine.START, Integer.toBinaryString(1));
+        binary_states.put(Machine.HALT, Integer.toBinaryString(2));
+
+        for (String state : instructions.keySet()) {
+            if (!state.equals(Machine.START) && !state.equals(Machine.HALT))
+                binary_states.put(state, Integer.toBinaryString(1));
+        }
+
+        for (String state : instructions.keySet()) {
+            wildcard_action = null;
+
+            for (Map.Entry<Character, Action> e : instructions.get(state).entrySet()){
+                symbol = e.getKey();
+                action = e.getValue();
+
+                if (symbol == '*') {
+                    wildcard_action = action;
+                    continue;
+                }
+
+                sbuf.append(String.format("(%s,%s,%s,%s)", binary_states.get(state), symbol,
+                        binary_states.get(action.getNewState()), action.getTask()));
+            }
+
+            if (wildcard_action != null) {
+                for (char lang_symbol : language.get()) {
+                    sbuf.append(String.format("(%s,%s,%s,%s)", binary_states.get(state), lang_symbol,
+                            binary_states.get(wildcard_action.getNewState()), wildcard_action.getTask()));
+                }
+            }
+        }
+
+        return sbuf.toString();
+    }
+
+    /* TODO: delete this comment
     public String compile() {
         Map<String, Map<Character,Action>> instructions_copy = new HashMap<String, Map<Character, Action>>();
         //Map<Character,Action> valid_instructions.get("h")
@@ -106,6 +157,8 @@ public class MachineImpl implements Machine {
         return null;
     }
 
+
+
     private String intToSparseBinary(int num) {
         String binary = Integer.toBinaryString(num);
         StringBuilder sbuf = new StringBuilder();
@@ -115,7 +168,7 @@ public class MachineImpl implements Machine {
             sbuf.append(binary.charAt(i));
         }
         return sbuf.toString();
-    }
+    }*/
 
     private void runOnce() {
         Action action = getAction(state, tape.read());

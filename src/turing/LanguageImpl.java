@@ -1,5 +1,8 @@
 package turing;
 
+import turing.examples.UniversalExecutor;
+import turing.examples.UniversalCompiler;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -14,11 +17,29 @@ import java.util.Set;
 public class LanguageImpl implements Language {
     private final Set<Character> chars = new HashSet<Character>();
     private static final Set<Character> reserved = new HashSet<Character>();
+    private static final Set<Character> universal_reserved = new HashSet<Character>();
 
     static {
         reserved.add(MachineImpl.WILDCARD_SYMBOL);
-        reserved.add(TapeImpl.EMPTY);
-        reserved.add(TapeImpl.START);
+
+        //reserved.add(TapeImpl.EMPTY);
+        //reserved.add(TapeImpl.START);
+
+
+        reserved.add(UniversalCompiler.INST_DELIM);
+        reserved.add(UniversalCompiler.INST_START);
+        reserved.add(UniversalCompiler.INST_END);
+
+
+        universal_reserved.add(UniversalExecutor.STATE_START);
+        universal_reserved.add(UniversalExecutor.SYMBOL_START);
+        universal_reserved.add(UniversalExecutor.START);
+        universal_reserved.add(UniversalExecutor.STATE_END);
+        universal_reserved.add(UniversalExecutor.ITER_I);
+        universal_reserved.add(UniversalExecutor.ITER_J);
+        universal_reserved.add(UniversalExecutor.BUFFER_POINTER);
+
+        universal_reserved.add(Machine.HALT.charAt(0));
     }
 
     public LanguageImpl(char[] array) {
@@ -35,13 +56,19 @@ public class LanguageImpl implements Language {
         checkValid();
     }
 
-    private void checkValid() {
+    public void checkValid() {
         if (chars.removeAll(reserved))
-            throw new RuntimeException("Language contained a reserved character");
+            throw new RuntimeException("Language contained a reserved character from LanguageImpl");
     }
 
     public Set<Character> get() {
         return Collections.unmodifiableSet(chars);
         //return new HashSet<Character>(chars);
+    }
+
+    @Override
+    public void checkUniversal() {
+        if (new HashSet<Character>(chars).removeAll(reserved))
+            throw new RuntimeException("Language contained a reserved character for a universal language");
     }
 }

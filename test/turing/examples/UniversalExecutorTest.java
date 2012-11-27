@@ -12,16 +12,16 @@ import static org.junit.Assert.assertEquals;
  * Date: 25/11/2012
  * Time: 17:20
  */
-public class UniversalTest extends OperationTest {
+public class UniversalExecutorTest extends OperationTest {
     @Test
     public void testRun() throws Exception {
         setLanguage(new char[]{'1', '2', '3'});
-        assertEquals("123", run(">ta 1b= 1 0w1; a 1 0b1 1 0rb  1 1w2; a 1 1b2 1 1rb  0w3; a 0b3 0h;;=p"));
+        assertEquals("123", run("=ta 1b> 1 0w1; a 1 0b1 1 0»b  1 1w2; a 1 1b2 1 1»b  0w3; a 0b3 0h;;>p"));
     }
 
 
     Operation createInstance(Language language) {
-        return new Universal(language);
+        return new UniversalExecutor(language);
     }
 
     @Override
@@ -32,6 +32,3 @@ public class UniversalTest extends OperationTest {
     }
 }
 
-
-//>ta 1b> 1 0w1; a 1 0b1 1 0rb  1 1w2; a 1 1b2 1 1rb  0w3;;>p
-//>ta 1b= 1 0w1; a 1 0b1 1 0rb  1 1w2; a 1 1b2 1 1rb  0w3; a 0b3 0h;;=p

@@ -16,8 +16,10 @@ public class TapeImpl implements Tape {
     private int position;
 
     public TapeImpl(String tape_string) {
-        if (tape_string.isEmpty() || tape_string.charAt(0) != START)
-            throw new RuntimeException("Tape must begin with a " + START);
+        //if (tape_string.isEmpty() || tape_string.charAt(0) != START)
+            //throw new RuntimeException("Tape must begin with a " + START);
+        if (tape_string.isEmpty())
+            throw new RuntimeException("Tape can't be empty");
 
         for (int i = tape_string.length() - 1; i >= 0; --i) {
             start_element = new TapeElementImpl(tape_string.charAt(i), start_element);
