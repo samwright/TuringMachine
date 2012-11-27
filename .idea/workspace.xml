@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a627187-60a1-43ae-9fde-afa1bc128da9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/turing/examples/UniversalMachine.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/turing/examples/UniversalOperation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/turing/examples/UniversalCompilerTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/turing/examples/UniversalMachineTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/turing/TapeImpl.java" afterPath="$PROJECT_DIR$/src/turing/TapeWithoutCheckImpl.java" />
+    <list default="true" id="6a627187-60a1-43ae-9fde-afa1bc128da9" name="Default" comment="Universal Turing Machine works!!  Tested it with a simple writer (&quot;&gt;&quot; -&gt; &quot;&gt;123&quot;) and a copier (&quot;&gt;12345&quot; -&gt; &quot;&gt;1234512345&quot;).">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/Action.java" afterPath="$PROJECT_DIR$/src/turing/Action.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/ActionImpl.java" afterPath="$PROJECT_DIR$/src/turing/ActionImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/Language.java" afterPath="$PROJECT_DIR$/src/turing/Language.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/LanguageImpl.java" afterPath="$PROJECT_DIR$/src/turing/LanguageImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/Machine.java" afterPath="$PROJECT_DIR$/src/turing/Machine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/MachineImpl.java" afterPath="$PROJECT_DIR$/src/turing/MachineImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/TapeImpl.java" afterPath="$PROJECT_DIR$/src/turing/TapeImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/CopyAfterGap.java" afterPath="$PROJECT_DIR$/src/turing/examples/CopyAfterGap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/ShiftLeft.java" afterPath="$PROJECT_DIR$/src/turing/examples/ShiftLeft.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/ShiftLeftABC.java" afterPath="$PROJECT_DIR$/src/turing/examples/ShiftLeftABC.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/UniversalCompiler.java" afterPath="$PROJECT_DIR$/src/turing/examples/UniversalCompiler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/turing/examples/UniversalExecutor.java" afterPath="$PROJECT_DIR$/src/turing/examples/UniversalExecutor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/turing/MachineImplTest.java" afterPath="$PROJECT_DIR$/test/turing/MachineImplTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/turing/examples/OperationTest.java" afterPath="$PROJECT_DIR$/test/turing/examples/OperationTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/turing/examples/UniversalExecutorTest.java" afterPath="$PROJECT_DIR$/test/turing/examples/UniversalExecutorTest.java" />
     </list>
     <ignored path="TuringMachine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,7 +63,7 @@
       <file leaf-file-name="TapeImplTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/turing/TapeImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="16" selection-start="639" selection-end="639" vertical-scroll-proportion="0.03125">
+            <state line="57" column="39" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.8125">
               <folding />
             </state>
           </provider>
@@ -810,7 +790,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/turing/TapeImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="16" selection-start="639" selection-end="639" vertical-scroll-proportion="0.03125">
+        <state line="57" column="39" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.8125">
           <folding />
         </state>
       </provider>
