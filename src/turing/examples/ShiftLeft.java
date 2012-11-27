@@ -20,8 +20,10 @@ public class ShiftLeft implements Operation {
         m.addInstruction("wrote something", '*', "s", Action.MOVERIGHT);
 
         for (char symbol : language.get()) {
-            m.addInstruction("moved right", symbol, "found " + symbol, Action.MOVELEFT);
-            m.addInstruction("found " + symbol, '*', "wrote something", symbol);
+            if (symbol != ' ') {
+                m.addInstruction("moved right", symbol, "found " + symbol, Action.MOVELEFT);
+                m.addInstruction("found " + symbol, '*', "wrote something", symbol);
+            }
         }
     }
 
@@ -29,5 +31,9 @@ public class ShiftLeft implements Operation {
         m.setTape(tape);
         m.resetState();
         m.run();
+    }
+
+    public Machine getMachine() {
+        return m;
     }
 }

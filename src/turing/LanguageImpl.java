@@ -1,11 +1,10 @@
 package turing;
 
-import turing.examples.UniversalExecutor;
 import turing.examples.UniversalCompiler;
+import turing.examples.UniversalExecutor;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -49,13 +48,6 @@ public class LanguageImpl implements Language {
         checkValid();
     }
 
-    public LanguageImpl(List<Character> lst) {
-        for (char ch : lst) {
-            chars.add(ch);
-        }
-        checkValid();
-    }
-
     public void checkValid() {
         if (chars.removeAll(reserved))
             throw new RuntimeException("Language contained a reserved character from LanguageImpl");
@@ -63,7 +55,6 @@ public class LanguageImpl implements Language {
 
     public Set<Character> get() {
         return Collections.unmodifiableSet(chars);
-        //return new HashSet<Character>(chars);
     }
 
     @Override

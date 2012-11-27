@@ -1,9 +1,6 @@
 package turing.examples;
 
-import org.junit.Test;
 import turing.*;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +19,7 @@ public abstract class OperationTest {
     }
 
     public String run(String str) {
-        Tape tape = new TapeImpl(str);
+        Tape tape = new TapeWithoutCheckImpl(str);
         op.run(tape);
         return tape.toString().trim();
     }

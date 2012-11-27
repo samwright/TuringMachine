@@ -95,10 +95,19 @@ public interface Machine {
      * order of priority described for addInstruction).
      *
      * The resulting string can be run in the UniversalExecutor Turing Machine (turing.examples)
-     * @param language
+     * @param language The language to write the instructions in.
      * @return All instructions
      */
     String getInstructions(Language language);
+
+    /**
+     * Appends the instructions from the other machine to this one.
+     *
+     * Any previous references to the halt state now refer to the start of
+     * the other machine, so this now halts where the other machine halts.
+     * @param other The machine to append.
+     */
+    void appendMachine(Machine other);
 
     /**
      * Returns the current configuration of the machine as a string.

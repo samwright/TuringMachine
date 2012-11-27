@@ -1,9 +1,6 @@
 package turing;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -101,18 +98,22 @@ public class MachineImpl implements Machine {
         StringBuilder sbuf = new StringBuilder();
         Action wildcard_action;
         Map<String,String> binary_states = new HashMap<String,String>();
-        int state_number = 3;
+        int state_number = 2;
 
-        binary_states.put(Machine.START, Integer.toBinaryString(1));
-        binary_states.put(Machine.HALT, Integer.toBinaryString(2));
+        binary_states.put(Machine.HALT, "a" + Integer.toBinaryString(0));
+        binary_states.put(Machine.START, "a" + Integer.toBinaryString(1));
 
         for (String state : instructions.keySet()) {
             if (!state.equals(Machine.START) && !state.equals(Machine.HALT))
-                binary_states.put(state, Integer.toBinaryString(1));
+                binary_states.put(state, "a" + Integer.toBinaryString(state_number++));
         }
 
         for (String state : instructions.keySet()) {
             wildcard_action = null;
+            sbuf.append(String.format("(%s", binary_states.get(state)));
+
+            if (state.equals("h"))
+                throw new RuntimeException("Can't have instruction starting on 'h'");
 
             for (Map.Entry<Character, Action> e : instructions.get(state).entrySet()){
                 symbol = e.getKey();
@@ -123,59 +124,108 @@ public class MachineImpl implements Machine {
                     continue;
                 }
 
-                sbuf.append(String.format("(%s,%s,%s,%s)", binary_states.get(state), symbol,
+                sbuf.append(String.format(",%s,%s,%s", symbol,
                         binary_states.get(action.getNewState()), action.getTask()));
             }
 
             if (wildcard_action != null) {
                 for (char lang_symbol : language.get()) {
-                    sbuf.append(String.format("(%s,%s,%s,%s)", binary_states.get(state), lang_symbol,
-                            binary_states.get(wildcard_action.getNewState()), wildcard_action.getTask()));
+                    if (!instructions.get(state).containsKey(lang_symbol))
+                        sbuf.append(String.format(",%s,%s,%s", lang_symbol,
+                                binary_states.get(wildcard_action.getNewState()), wildcard_action.getTask()));
+                }
+            }
+
+            sbuf.append(')');
+        }
+
+        // When the false halt state (a0) is reached, perform the halt task (which
+        // lets the universal executor clean the buffer before moving to the REAL halt state).
+        sbuf.append("(a0");
+        for (char lang_symbol : language.get()) {
+            sbuf.append(String.format(",%s,a0,h", lang_symbol));
+        }
+        sbuf.append(')');
+
+        return sbuf.toString();
+    }
+
+    public void appendMachine(Machine other) {
+        Map<String,Map<Character,Action>> other_instructions = Collections.unmodifiableMap(((MachineImpl) other).instructions);
+        String identifier = String.valueOf(other.hashCode());
+
+        if (!other_instructions.containsKey(START))
+            throw new RuntimeException("Appended machine didn't contain a START state");
+        if (other_instructions.containsKey(HALT))
+            throw new RuntimeException("Appended machine contained instructions starting from HALT");
+
+        Map<String,String> state_translation = new HashMap<String, String>();
+        state_translation.put(HALT, HALT);
+        List<Action> actions_to_update = new LinkedList<Action>();
+
+        if (instructions.isEmpty()) {
+            for (String other_state : other_instructions.keySet()) {
+                state_translation.put(other_state, other_state);
+            }
+        } else {
+            for (String other_state : other_instructions.keySet()) {
+                state_translation.put(other_state, String.format("%s : %s", identifier, other_state));
+            }
+            // update this halt to other start
+            for (Map<Character, Action> map : this.instructions.values()) {
+                for (Action action : map.values()) {
+                    if (action.getNewState().equals(HALT)) {
+                        // Defer update to after adding other states
+                        // (so appending this to this works)
+                        actions_to_update.add(action);
+                    }
                 }
             }
         }
 
-        return sbuf.toString();
-    }
+        // Add other.instructions to added_instructions, prepending identifiers in all states
+        // except for HALT (ie. as per state_translation mapping)
+        Action other_action, copied_action;
+        String state;
 
-    /* TODO: delete this comment
-    public String compile() {
-        Map<String, Map<Character,Action>> instructions_copy = new HashMap<String, Map<Character, Action>>();
-        //Map<Character,Action> valid_instructions.get("h")
-        Map<String, String> state_mapping = new HashMap<String, String>();
+        Map<String,Map<Character,Action>> added_instructions = new HashMap<String, Map<Character, Action>>();
+        Map<Character, Action> new_map;
 
-        state_mapping.put("h", intToSparseBinary(2));
-        state_mapping.put("s", intToSparseBinary(1));
+        for (Map.Entry<String, Map<Character,Action>> e : other_instructions.entrySet()) {
+            state = e.getKey();
 
-        //Map<Character, Character>
+            new_map = added_instructions.get(state_translation.get(state));
+            if (new_map == null) {
+                new_map = new HashMap<Character, Action>();
+                added_instructions.put(state_translation.get(state), new_map);
+            }
 
-        int i=3;
-        for (Map.Entry<String, Map<Character,Action>> e : instructions.entrySet()) {
-            if (!state_mapping.containsKey(e.getKey()))
-                state_mapping.put(e.getKey(), intToSparseBinary(i++));
+            for (Map.Entry<Character, Action> symbol_action : e.getValue().entrySet()) {
+                other_action = symbol_action.getValue();
+                copied_action = new ActionImpl(state_translation.get(other_action.getNewState()), other_action.getTask());
+                new_map.put(symbol_action.getKey(), copied_action);
+            }
         }
-        return null;
-    }
 
+        // Add the new states to this
+        instructions.putAll(added_instructions);
 
-
-    private String intToSparseBinary(int num) {
-        String binary = Integer.toBinaryString(num);
-        StringBuilder sbuf = new StringBuilder();
-        sbuf.append('a');
-        for (int i=0; i<binary.length(); ++i) {
-            sbuf.append(' ');
-            sbuf.append(binary.charAt(i));
+        // Update old this instructions pointing to HALT
+        // to now point to the start state from new instructions
+        String other_start = state_translation.get(START);
+        for (Action action : actions_to_update) {
+            action.setNewState(other_start);
         }
-        return sbuf.toString();
-    }*/
+    }
 
     private void runOnce() {
         Action action = getAction(state, tape.read());
 
-        if (action == null)
+        if (action == null) {
+//            System.out.println("instructions: " + Arrays.toString(instructions.get(state).keySet().toArray()));
             throw new RuntimeException("No instruction exists for state \'" + state
-                    + "\' and symbol \'" + tape.read()+"\'");
+                    + "\' and symbol \'" + tape.read()+"\'\n" + toString());
+        }
 
         if (action.isMoveLeft())
             tape.moveLeft();

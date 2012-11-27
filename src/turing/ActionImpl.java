@@ -7,12 +7,12 @@ package turing;
  * Time: 13:31
  */
 public class ActionImpl implements Action {
-    private final String new_state;
-    private final char task;
+    private String new_state;
+    private char task;
 
     public ActionImpl(String new_state, char task) {
-        this.new_state = new_state;
-        this.task = task;
+        setNewState(new_state);
+        setTask(task);
     }
 
     @Override
@@ -33,6 +33,16 @@ public class ActionImpl implements Action {
     @Override
     public char getTask() {
         return task;
+    }
+
+    @Override
+    public void setTask(char task) {
+        this.task = task;
+    }
+
+    @Override
+    public void setNewState(String new_state) {
+        this.new_state = new_state;
     }
 
     @Override

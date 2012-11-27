@@ -1,7 +1,9 @@
 package turing.examples;
 
 
-import turing.*;
+import turing.Action;
+import turing.Machine;
+import turing.MachineImpl;
 
 
 /**

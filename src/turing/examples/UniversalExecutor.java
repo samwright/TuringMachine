@@ -2,10 +2,6 @@ package turing.examples;
 
 import turing.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Sam Wright
@@ -56,13 +52,14 @@ import java.util.Set;
  *   (Where halt is a0, start is a1.)
  *
  */
-public class UniversalExecutor implements Operation {
-    private Machine m = new MachineImpl();
+public class UniversalExecutor implements UniversalOperation {
+    private final Machine m = new MachineImpl();
 
     public static final char START = '=';
-    public static final char INNERSTART = '>';
     public static final char HALT = Machine.HALT.charAt(0);
     public static final char WRITE = 'w';
+    public static final char MOVERIGHT = 'r';
+    public static final char MOVELEFT = 'l';
 
     // TODO: these chars aren't ever used in UniversalExecutor!  Changing them doesn't change the compilation language.
     public static final char STATE_START = 'a';
@@ -72,18 +69,13 @@ public class UniversalExecutor implements Operation {
     public static final char ITER_J = 'j';
     public static final char BUFFER_POINTER = 'p';
 
-
+    // These aren't reserved (ie. the language can use them)
+    public static final char THIS_STATE = 't';
 
 
     public UniversalExecutor(Language language){
         Language binary_language = new LanguageImpl(new char[]{'0', '1'});
-        Language task_language = new LanguageImpl(new char[]{WRITE, Action.MOVELEFT, Action.MOVERIGHT, HALT});
-        Set<Character> extended_language_set= new HashSet<Character>(language.get());
-        extended_language_set.add(INNERSTART);
-        extended_language_set.add(Tape.EMPTY);
-
-        m.setVerbose(true);
-
+        Language task_language = new LanguageImpl(new char[]{WRITE, MOVELEFT, MOVERIGHT, HALT});
 
         // Move to buffer (ie. one after ;;)
         m.addInstruction("s",START, "right to buffer", Action.MOVERIGHT);
@@ -92,7 +84,7 @@ public class UniversalExecutor implements Operation {
         m.addInstruction("right to buffer, found ;", ';', "at buffer", Action.MOVERIGHT);
         m.addInstruction("right to buffer, found ;", '*', "right to buffer", Action.MOVERIGHT);
 
-        for (char symbol : extended_language_set) {
+        for (char symbol : language.get()) {
             // Remember buffer in state, and move to this_state (t) (GENERALISE)
             m.addInstruction("at buffer", symbol, "left to symbol " + symbol, Action.MOVELEFT);
             m.addInstruction("left to symbol " + symbol, '*', "left to symbol " + symbol, Action.MOVELEFT);
@@ -220,6 +212,7 @@ public class UniversalExecutor implements Operation {
         // But if the iterators (ie. the states) don't match:
         m.addInstruction("found i (j=0)", '1', "iterators don't match, reset", Action.MOVELEFT);
         m.addInstruction("found i (j=1)", '0', "iterators don't match, reset", Action.MOVELEFT);
+        m.addInstruction("assert j finished", ' ', "iterators don't match, reset", Action.MOVELEFT);
         // Then:
         //  - Return to start, find i, reset it
         //  - form loop, looking for the next unchecked state
@@ -249,15 +242,15 @@ public class UniversalExecutor implements Operation {
                 m.addInstruction("maybe at end of functions, job is: " + task, '*', "job is: " + task, Action.MOVERIGHT);
                 m.addInstruction("maybe at end of functions, job is: " + task, ';', "reading buffer, job is: " + task, Action.MOVERIGHT);
 
-                if (task == Action.MOVELEFT)
+                if (task == MOVELEFT)
                     m.addInstruction("buffer popped, job is:" + task, '*', "read new buffer", Action.MOVELEFT);
-                else if (task == Action.MOVERIGHT)
+                else if (task == MOVERIGHT)
                     m.addInstruction("buffer popped, job is:" + task, '*', "read new buffer", Action.MOVERIGHT);
                 else if (task == HALT)
                     m.addInstruction("buffer popped, job is:" + task, '*', "h", Action.MOVERIGHT);
             }
 
-            for (char symbol : extended_language_set) {
+            for (char symbol : language.get()) {
                 if (task == WRITE) {
                     m.addInstruction("job is: " + task, symbol, "job is: " + task + " " + symbol, Action.MOVERIGHT);
                     m.addInstruction("job is: " + task + " " + symbol, '*', "job is: " + task + " " + symbol, Action.MOVERIGHT);
@@ -273,7 +266,7 @@ public class UniversalExecutor implements Operation {
                     m.addInstruction("buffer is " + symbol + ", job is:" + task, 'p', "buffer popped, job is:" + task, symbol);
 
                     // Both l and r share these states, and we don't want duplicates.
-                    if (task == Action.MOVELEFT) {
+                    if (task == MOVELEFT) {
                         // Taking new value from input tape and storing in buffer
                         m.addInstruction("read new buffer", symbol, "new buffer is " + symbol, 'p');
                         m.addInstruction("new buffer is " + symbol, '*', "new buffer is " + symbol, Action.MOVELEFT);
@@ -285,6 +278,10 @@ public class UniversalExecutor implements Operation {
             }
         }
 
+    }
+
+    public Machine getMachine() {
+        return m;
     }
 
     public void run(Tape tape) {

@@ -24,17 +24,19 @@ public class CopyAfterGap implements Operation {
         m.addInstruction("detect symbol", ' ', "h", ' ');
 
         for (char symbol : language.get()) {
-            m.addInstruction("detect symbol", symbol, "deleting " + symbol, ' ');
-            m.addInstruction("deleting " + symbol, ' ', "found " + symbol, Action.MOVERIGHT);
-            m.addInstruction("found " + symbol, '*', "found " + symbol, Action.MOVERIGHT);
-            m.addInstruction("found " + symbol, ' ', "skipping copy to write " + symbol, Action.MOVERIGHT);
-            m.addInstruction("skipping copy to write " + symbol, '*', "skipping copy to write " + symbol, Action.MOVERIGHT);
-            m.addInstruction("skipping copy to write " + symbol, ' ', "written " + symbol, symbol);
+            if (symbol != ' ') {
+                m.addInstruction("detect symbol", symbol, "deleting " + symbol, ' ');
+                m.addInstruction("deleting " + symbol, ' ', "found " + symbol, Action.MOVERIGHT);
+                m.addInstruction("found " + symbol, '*', "found " + symbol, Action.MOVERIGHT);
+                m.addInstruction("found " + symbol, ' ', "skipping copy to write " + symbol, Action.MOVERIGHT);
+                m.addInstruction("skipping copy to write " + symbol, '*', "skipping copy to write " + symbol, Action.MOVERIGHT);
+                m.addInstruction("skipping copy to write " + symbol, ' ', "written " + symbol, symbol);
 
-            m.addInstruction("written " + symbol, '*', "written " + symbol, Action.MOVELEFT);
-            m.addInstruction("written " + symbol, ' ', "skipping original to rewrite " + symbol, Action.MOVELEFT);
-            m.addInstruction("skipping original to rewrite " + symbol, '*', "skipping original to rewrite " + symbol, Action.MOVELEFT);
-            m.addInstruction("skipping original to rewrite " + symbol, ' ', "rewritten original", symbol);
+                m.addInstruction("written " + symbol, '*', "written " + symbol, Action.MOVELEFT);
+                m.addInstruction("written " + symbol, ' ', "skipping original to rewrite " + symbol, Action.MOVELEFT);
+                m.addInstruction("skipping original to rewrite " + symbol, '*', "skipping original to rewrite " + symbol, Action.MOVELEFT);
+                m.addInstruction("skipping original to rewrite " + symbol, ' ', "rewritten original", symbol);
+            }
 
         }
     }
@@ -43,5 +45,9 @@ public class CopyAfterGap implements Operation {
         m.setTape(tape);
         m.resetState();
         m.run();
+    }
+
+    public Machine getMachine() {
+        return m;
     }
 }

@@ -35,6 +35,19 @@ public interface Action {
     char getTask();
 
     /**
+     * Sets the task.
+     * @param task The task.
+     */
+    void setTask(char task);
+
+    /**
+     * Sets the new_state.
+     *
+     * @param new_state The new_state.
+     */
+    void setNewState(String new_state);
+
+    /**
      * Tests if the other action has the same new state and task.
      * as this.
      * @param other The Action to compare this to.

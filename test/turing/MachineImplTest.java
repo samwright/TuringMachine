@@ -2,6 +2,8 @@ package turing;
 
 import org.junit.Before;
 import org.junit.Test;
+import turing.examples.CopyAfterGap;
+import turing.examples.ShiftLeft;
 
 import static org.junit.Assert.*;
 
@@ -205,10 +207,98 @@ public class MachineImplTest {
 
     @Test
     public void testGetInstructions() {
-        String expected = "(1,a,1,»)(1,>,1,»)(1,b,1,»)(1, ,10,c)(1, ,1,a)(1, ,1,b)";
+        String expected = "(a10,a,a110,»)(a1,>,a101,»)(a11,b,a100,»)(a100, ,a0,c)(a101, ,a10,a)(a110, ,a11,b)(a0, ,a0,h,b,a0,h,c,a0,h,a,a0,h,>,a0,h)";
         String received = m.getInstructions(new LanguageImpl(new char[]{'a', 'b', 'c', ' ', '>'}));
-
         assertEquals(expected, received);
+    }
+
+    @Test
+    public void testGetTwoSymbolsInstructions() {
+        m.addInstruction("written b", 'c', "h", Action.MOVERIGHT);
+        String expected = "(a10,a,a110,»)(a1,>,a101,»)(a11,b,a100,»,c,a0,»)(a100, ,a0,c)(a101, ,a10,a)(a110, ,a11,b)(a0, ,a0,h,b,a0,h,c,a0,h,a,a0,h,>,a0,h)";
+        String received = m.getInstructions(new LanguageImpl(new char[]{'a', 'b', 'c', ' ', '>'}));
+        assertEquals(expected, received);
+    }
+
+    @Test
+    public void testGetWildcardSymbolInstructions() {
+        m.addInstruction("write c", '*', "h", Action.MOVERIGHT);
+        String expected = "(a10,a,a110,»)(a1,>,a101,»)(a11,b,a100,»)(a100, ,a0,c,b,a0,»,c,a0,»,a,a0,»,>,a0,»)(a101, ,a10,a)(a110, ,a11,b)(a0, ,a0,h,b,a0,h,c,a0,h,a,a0,h,>,a0,h)";
+        String received = m.getInstructions(new LanguageImpl(new char[]{'a', 'b', 'c', ' ', '>'}));
+        assertEquals(expected, received);
+    }
+
+    @Test
+    public void testGetWithNumbers() {
+        m = new MachineImpl();
+        m.setTape(">");
+
+        m.addInstruction("s", '>', "write a", Action.MOVERIGHT);
+        m.addInstruction("write a", ' ', "written a", '1');
+        m.addInstruction("written a", '1', "write b", Action.MOVERIGHT);
+        m.addInstruction("write b", ' ', "written b", '2');
+        m.addInstruction("written b", '2', "write c", Action.MOVERIGHT);
+        m.addInstruction("write c", ' ', "h", '3');
+
+
+        String expected = "(a10,1,a110,»)(a1,>,a101,»)(a11,2,a100,»)(a100, ,a0,3)(a101, ,a10,1)(a110, ,a11,2)(a0,3,a0,h,2,a0,h, ,a0,h,1,a0,h,>,a0,h)";
+        String received = m.getInstructions(new LanguageImpl(new char[]{'1', '2', '3', ' ', '>'}));
+        assertEquals(expected, received);
+    }
+
+    @Test
+    public void testAppendMachine() {
+        Machine add_another_start = new MachineImpl();
+        add_another_start.addInstruction("s", 'c', "write >", Action.MOVERIGHT);
+        add_another_start.addInstruction("write >", ' ', "h", '>');
+
+        Machine n = new MachineImpl();
+        n.setTape(">");
+
+        n.addInstruction("s", '>', "write a", Action.MOVERIGHT);
+        n.addInstruction("write a", ' ', "written a", '1');
+        n.addInstruction("written a", '1', "write b", Action.MOVERIGHT);
+        n.addInstruction("write b", ' ', "written b", '2');
+        n.addInstruction("written b", '2', "write c", Action.MOVERIGHT);
+        n.addInstruction("write c", ' ', "h", '3');
+
+        Machine combined_machine = new MachineImpl();
+
+        combined_machine.appendMachine(m);
+        combined_machine.appendMachine(add_another_start);
+        combined_machine.appendMachine(n);
+
+        combined_machine.setTape(">");
+        combined_machine.run();
+        assertEquals(">abc>123", combined_machine.getTape());
+
+    }
+
+    @Test
+    public void testAppendMachineSelf() {
+        Machine add_another_start = new MachineImpl();
+        add_another_start.addInstruction(Machine.START, 'c', "write >", Action.MOVERIGHT);
+        add_another_start.addInstruction("write >", ' ', Machine.HALT, '>');
+
+        m.appendMachine(add_another_start);
+        m.appendMachine(m);
+
+        m.run();
+        assertEquals(">abc>abc>", m.getTape());
+
+    }
+
+    @Test
+    public void testAppendingToCopy() {
+        Machine combined = new MachineImpl();
+        Language language = new LanguageImpl(new char[]{'1','2','3','4','5',' ','>'});
+
+        combined.appendMachine(new CopyAfterGap(language).getMachine());
+        combined.appendMachine(new ShiftLeft(language).getMachine());
+
+        combined.setTape(">12345");
+        combined.run();
+        assertEquals(">1234512345", combined.getTape().trim());
     }
 
 }
