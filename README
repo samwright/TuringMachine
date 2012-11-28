@@ -1,1 +1,4 @@
-This file was created by IntelliJ IDEA 11.1.4 for binding GitHub repository
+This is an implementation of a Turing Machine in java, with (tested) examples - one of which is a
+Universal Turing Machine which comprises a compiler and executor.  The other examples are then
+passed to the Universal Turing Machine where they are compiled and executed to give the same
+result as before!
