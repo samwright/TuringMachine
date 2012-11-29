@@ -5,6 +5,7 @@ import turing.examples.UniversalExecutor;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,6 +46,11 @@ public class LanguageImpl implements Language {
         for (char ch : array) {
             chars.add(ch);
         }
+        checkValid();
+    }
+
+    public LanguageImpl(List<Character> lst) {
+        chars.addAll(lst);
         checkValid();
     }
 

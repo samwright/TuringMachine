@@ -43,6 +43,11 @@ public class MachineImpl implements Machine {
         return action;
     }
 
+    @Override
+    public void clearInstructions() {
+        instructions = new HashMap<String, Map<Character, Action>>();
+    }
+
     public void run() {
         while(!isHalted()) {
             runOnce();
@@ -150,6 +155,11 @@ public class MachineImpl implements Machine {
         return sbuf.toString();
     }
 
+    public Map<String, Map<Character, Action>> getLowLevelInstructions() {
+        return Collections.unmodifiableMap(instructions);
+    }
+
+
     public void appendMachine(Machine other) {
         Map<String,Map<Character,Action>> other_instructions = Collections.unmodifiableMap(((MachineImpl) other).instructions);
         String identifier = String.valueOf(other.hashCode());
@@ -239,6 +249,8 @@ public class MachineImpl implements Machine {
         if (verbose)
             System.out.println(this);
     }
+
+
 
     @Override
     public String toString() {

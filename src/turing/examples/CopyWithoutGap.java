@@ -1,8 +1,6 @@
 package turing.examples;
 
-import turing.Language;
-import turing.Operation;
-import turing.Tape;
+import turing.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,15 +9,24 @@ import turing.Tape;
  * Time: 01:00
  */
 public class CopyWithoutGap implements Operation {
-    private Operation copy_after_gap, shift_left;
+    private Machine m = new MachineImpl();
 
     public CopyWithoutGap(Language language) {
-        copy_after_gap = new CopyAfterGap(language);
-        shift_left = new ShiftLeft(language);
+        m.appendMachine(new CopyAfterGap(language).getMachine());
+        m.appendMachine(new ShiftLeft(language).getMachine());
+
     }
 
     public void run(Tape tape) {
-        copy_after_gap.run(tape);
-        shift_left.run(tape);
+        m.setTape(tape);
+        m.resetState();
+        m.run();
+
     }
+
+    public Machine getMachine() {
+        return m;
+    }
+
+
 }

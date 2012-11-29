@@ -1,5 +1,7 @@
 package turing;
 
+import java.util.Map;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Sam Wright
@@ -36,6 +38,11 @@ public interface Machine {
      * @return The action the machine would take.
      */
     Action getAction(String state, char symbol);
+
+    /**
+     * Removes all instructions from the machine.
+     */
+    void clearInstructions();
 
     /**
      * Runs the machine until the halt state is reached.
@@ -99,6 +106,12 @@ public interface Machine {
      * @return All instructions
      */
     String getInstructions(Language language);
+
+    /**
+     * Returns a read-only view of the internal instructions map.
+     * @return Read-only view of the internal instructions map.
+     */
+    Map<String,Map<Character,Action>> getLowLevelInstructions();
 
     /**
      * Appends the instructions from the other machine to this one.
